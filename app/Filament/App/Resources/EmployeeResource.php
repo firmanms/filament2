@@ -12,15 +12,20 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Forms\Components\FileUpload;
+use Filament\Infolists\Components\ImageEntry;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
+use Filament\Notifications\Notification;
 
 class EmployeeResource extends Resource
 {
@@ -102,7 +107,12 @@ class EmployeeResource extends Resource
                             ->native(false)
                             ->displayFormat('d/m/Y')
                             ->required(),
-                    ])->columns(2)
+                    ])->columns(2),
+                Forms\Components\Fileupload::make('image')
+                    ->directory('employee')
+                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                        return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
+                    }),
 
             ]);
     }
@@ -191,7 +201,8 @@ class EmployeeResource extends Resource
                         TextEntry::make(
                             'zip_code'
                         ),
-                    ])->columns(2)
+                        ImageEntry::make('image'),
+                    ])->columns(3)
             ]);
     }
 

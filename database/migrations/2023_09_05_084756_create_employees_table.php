@@ -25,6 +25,7 @@ return new class extends Migration
             $table->char('zip_code');
             $table->date('date_of_birth');
             $table->date('date_hired');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
