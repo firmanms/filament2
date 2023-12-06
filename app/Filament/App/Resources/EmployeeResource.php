@@ -121,6 +121,9 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('country.name')
                     ->sortable()
                     ->searchable(),
