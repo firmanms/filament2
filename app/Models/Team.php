@@ -27,4 +27,14 @@ class Team extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function slides(): HasMany
+    {
+        return $this->hasMany(Slide::class);
+    }
+
+    public function related(): HasMany
+    {
+        return $this->hasMany(Related::class);
+    }
 }
