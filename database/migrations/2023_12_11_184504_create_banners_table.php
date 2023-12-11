@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relateds', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->string('title');
             $table->string('url');
             $table->string('description');
             $table->string('image')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('related');
+        Schema::dropIfExists('banners');
     }
 };

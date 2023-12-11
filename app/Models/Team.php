@@ -37,4 +37,19 @@ class Team extends Model
     {
         return $this->hasMany(Related::class);
     }
+
+    public function apis(): HasMany
+    {
+        return $this->hasMany(Api::class);
+    }
+
+    public function banners(): HasMany
+    {
+        return $this->hasMany(Banner::class);
+    }
+
+    public function menus(): HasMany
+    {
+        return $this->hasMany(Menu::class);
+    }
 }

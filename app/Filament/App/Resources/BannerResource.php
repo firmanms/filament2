@@ -2,9 +2,9 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\RelatedResource\Pages;
-use App\Filament\App\Resources\RelatedResource\RelationManagers;
-use App\Models\Related;
+use App\Filament\App\Resources\BannerResource\Pages;
+use App\Filament\App\Resources\BannerResource\RelationManagers;
+use App\Models\Banner;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class RelatedResource extends Resource
+class BannerResource extends Resource
 {
-    protected static ?string $model = Related::class;
+    protected static ?string $model = Banner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,24 +24,24 @@ class RelatedResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Related Details')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('url')
-                            ->required()
-                            ->maxLength(255),
-                            Forms\Components\Textarea::make('description')
-                            ->autosize()
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\Fileupload::make('image')
-                            ->directory('related')
-                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
-                        }),
-                    ])
+                Forms\Components\Section::make('Banner Details')
+                ->schema([
+                    Forms\Components\TextInput::make('title')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('url')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Textarea::make('description')
+                        ->autosize()
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Fileupload::make('image')
+                        ->directory('banner')
+                        ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                            return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
+                    }),
+                ])
             ]);
     }
 
@@ -52,7 +52,7 @@ class RelatedResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('url')
@@ -86,9 +86,9 @@ class RelatedResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRelated::route('/'),
-            'create' => Pages\CreateRelated::route('/create'),
-            'edit' => Pages\EditRelated::route('/{record}/edit'),
+            'index' => Pages\ListBanners::route('/'),
+            'create' => Pages\CreateBanner::route('/create'),
+            'edit' => Pages\EditBanner::route('/{record}/edit'),
         ];
     }    
 }

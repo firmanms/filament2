@@ -2,9 +2,9 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\RelatedResource\Pages;
-use App\Filament\App\Resources\RelatedResource\RelationManagers;
-use App\Models\Related;
+use App\Filament\App\Resources\ApiResource\Pages;
+use App\Filament\App\Resources\ApiResource\RelationManagers;
+use App\Models\Api;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,11 +12,12 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class RelatedResource extends Resource
+class ApiResource extends Resource
 {
-    protected static ?string $model = Related::class;
+    protected static ?string $model = Api::class;
+
+    protected static ?string $navigationLabel = 'API/URL';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,7 +25,7 @@ class RelatedResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Related Details')
+                Forms\Components\Section::make('API Details')
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
@@ -32,16 +33,8 @@ class RelatedResource extends Resource
                         Forms\Components\TextInput::make('url')
                             ->required()
                             ->maxLength(255),
-                            Forms\Components\Textarea::make('description')
-                            ->autosize()
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\Fileupload::make('image')
-                            ->directory('related')
-                            ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                                return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
-                        }),
                     ])
+                
             ]);
     }
 
@@ -49,9 +42,6 @@ class RelatedResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->sortable()
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->searchable(),
@@ -86,9 +76,9 @@ class RelatedResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRelated::route('/'),
-            'create' => Pages\CreateRelated::route('/create'),
-            'edit' => Pages\EditRelated::route('/{record}/edit'),
+            'index' => Pages\ListApis::route('/'),
+            'create' => Pages\CreateApi::route('/create'),
+            'edit' => Pages\EditApi::route('/{record}/edit'),
         ];
     }    
 }
