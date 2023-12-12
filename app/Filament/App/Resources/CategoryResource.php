@@ -2,9 +2,9 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\ApiResource\Pages;
-use App\Filament\App\Resources\ApiResource\RelationManagers;
-use App\Models\Api;
+use App\Filament\App\Resources\CategoryResource\Pages;
+use App\Filament\App\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,35 +13,34 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ApiResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = Api::class;
+    protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'API/URL';
+    protected static ?string $navigationLabel = 'Kategori';
 
-    protected static ?string $modelLabel = 'API/URL';
+    protected static ?string $modelLabel = 'Kategori';
 
     protected static ?string $navigationGroup = 'Pengaturan';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('API Details')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->label('Nama')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('url')
-                            ->required()
-                            ->maxLength(255),
-                    ])
-                
+                Forms\Components\Section::make('Category Details')
+                ->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nama')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Toggle::make('status')
+                        ->onColor('success')
+                        ->offColor('danger'),
+                ])
             ]);
     }
 
@@ -53,7 +52,9 @@ class ApiResource extends Resource
                     ->label('Nama')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('url')
+                Tables\Columns\ToggleColumn::make('status')
+                    ->onColor('success')
+                    ->offColor('danger')
                     ->sortable()
                     ->searchable(),
             ])
@@ -84,9 +85,9 @@ class ApiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListApis::route('/'),
-            'create' => Pages\CreateApi::route('/create'),
-            'edit' => Pages\EditApi::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }    
 }

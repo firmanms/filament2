@@ -20,6 +20,14 @@ class BannerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Banner';
+
+    protected static ?string $modelLabel = 'Banner';
+
+    protected static ?string $navigationGroup = 'Pengaturan';
+
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form

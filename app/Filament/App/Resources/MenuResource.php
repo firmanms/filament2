@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\MenuResource\Pages;
 use App\Filament\App\Resources\MenuResource\RelationManagers;
 use App\Models\Menu;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,6 +20,14 @@ class MenuResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Menu';
+
+    protected static ?string $modelLabel = 'Menu';
+
+    protected static ?string $navigationGroup = 'Pengaturan';
+
+    protected static ?int $navigationSort = 5;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -26,21 +35,28 @@ class MenuResource extends Resource
                 Forms\Components\Section::make('Menu Details')
                     ->schema([
                         Forms\Components\Select::make('parent_id')
-                        ->label('Parent')
-                        ->relationship('parent', 'title')
-                        ->searchable(),
+                            ->label('Parent')
+                            ->relationship(
+                                name: 'parent',
+                                titleAttribute: 'name',
+                                modifyQueryUsing: fn (Builder $query) => $query->where('status',1)->whereBelongsTo(Filament::getTenant())
+                            )
+                            ->searchable()
+                            ->preload(),
                         Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
+                            ->label('Nama')
+                            ->required()
+                            ->maxLength(255),
                         Forms\Components\TextInput::make('url')
-                        ->required()
-                        ->maxLength(255),
+                            ->required()
+                            ->maxLength(255),
                         Forms\Components\TextInput::make('order')
-                        ->required()
-                        ->maxLength(255),
-                        Forms\Components\TextInput::make('status')
-                        ->required()
-                        ->maxLength(255),
+                            ->label('Urutan')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Toggle::make('status')
+                            ->onColor('success')
+                            ->offColor('danger'),
                     ])
             ]);
     }
@@ -49,7 +65,14 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('parent_id.name')
+                    ->label('Parent')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //

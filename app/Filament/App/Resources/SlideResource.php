@@ -19,6 +19,14 @@ class SlideResource extends Resource
     protected static ?string $model = Slide::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    protected static ?string $navigationLabel = 'Slide';
+
+    protected static ?string $modelLabel = 'Slide';
+
+    protected static ?string $navigationGroup = 'Pengaturan';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -27,12 +35,15 @@ class SlideResource extends Resource
                 Forms\Components\Section::make('Slide Details')
                     ->schema([
                         Forms\Components\TextInput::make('title')
+                            ->label('Judul')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('subtitle')
+                            ->label('Sub Judul')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Fileupload::make('image')
+                            ->label('Gambar')
                             ->directory('slide')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
@@ -46,12 +57,15 @@ class SlideResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('subtitle')
+                    ->label('Sub Judul')
                     ->sortable()
                     ->searchable(),
             ])

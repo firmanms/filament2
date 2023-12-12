@@ -20,6 +20,14 @@ class RelatedResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Link Terkait';
+
+    protected static ?string $modelLabel = 'Link Terkait';
+
+    protected static ?string $navigationGroup = 'Pengaturan';
+
+    protected static ?int $navigationSort = 6;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -27,16 +35,19 @@ class RelatedResource extends Resource
                 Forms\Components\Section::make('Related Details')
                     ->schema([
                         Forms\Components\TextInput::make('name')
+                            ->label('Nama')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('url')
                             ->required()
                             ->maxLength(255),
                             Forms\Components\Textarea::make('description')
+                            ->label('Deskripsi')
                             ->autosize()
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Fileupload::make('image')
+                            ->label('Gambar')
                             ->directory('related')
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
@@ -50,9 +61,11 @@ class RelatedResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nama')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('url')

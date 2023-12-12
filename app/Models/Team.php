@@ -11,7 +11,8 @@ class Team extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug'];
+    // protected $fillable = ['name', 'slug'];
+    protected $guarded = [];
 
     public function employees(): HasMany
     {
@@ -51,5 +52,30 @@ class Team extends Model
     public function menus(): HasMany
     {
         return $this->hasMany(Menu::class);
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function pages(): HasMany
+    {
+        return $this->hasMany(Page::class);
+    }
+
+    public function agendas(): HasMany
+    {
+        return $this->hasMany(Agenda::class);
+    }
+
+    public function settings(): HasMany
+    {
+        return $this->hasMany(Setting::class);
     }
 }

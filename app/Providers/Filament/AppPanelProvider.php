@@ -56,7 +56,7 @@ class AppPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -72,7 +72,7 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->tenant(Team::class, ownershipRelationship: 'team', slugAttribute: 'slug')
+            ->tenant(Team::class, ownershipRelationship: 'team', slugAttribute: 'id')
             ->tenantRegistration(RegisterTeam::class)
             ->tenantProfile(EditTeamProfile::class);
     }

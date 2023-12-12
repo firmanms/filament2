@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Menu extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $casts = [
+        'status' => 'boolean',
+    ];
 
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
     }
 
-    public function parent()
+    public function posts(): HasMany
     {
-        return $this->belongsTo(self::class, 'parent_id');
-    }
-
-    public function children()
-    {
-        return self::where('parent_id', $this->id)->get();
+        return $this->hasMany(Post::class);
     }
 }
