@@ -14,18 +14,14 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('team_id')->unsigned()->nullable();
-            $table->BigInteger('parent_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('url');
-            $table->string('order');
-            $table->string('status');
+            $table->longText('subject');
             $table->timestamps();
         });
 
         Schema::table('menus', function($table) {
-            $table->foreign('parent_id')->references('id')->on('menus')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-    
+
         });
     }
 

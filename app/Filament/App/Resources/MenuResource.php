@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Saade\FilamentAdjacencyList\Forms\Components\AdjacencyList;
 
 class MenuResource extends Resource
 {
@@ -34,29 +35,40 @@ class MenuResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Menu Details')
                     ->schema([
-                        Forms\Components\Select::make('parent_id')
-                            ->label('Parent')
-                            ->relationship(
-                                name: 'parent',
-                                titleAttribute: 'name',
-                                modifyQueryUsing: fn (Builder $query) => $query->where('status',1)->whereBelongsTo(Filament::getTenant())
-                            )
-                            ->searchable()
-                            ->preload(),
                         Forms\Components\TextInput::make('name')
-                            ->label('Nama')
+                            ->label('Nama Menu')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('url')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('order')
-                            ->label('Urutan')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\Toggle::make('status')
-                            ->onColor('success')
-                            ->offColor('danger'),
+                        AdjacencyList::make('subject')
+                            ->form([
+                                Forms\Components\TextInput::make('label')
+                                    ->required(),
+                                Forms\Components\TextInput::make('link')
+                                    ->required(),
+                            ])
+                        // Forms\Components\Select::make('parent_id')
+                        //     ->label('Parent')
+                        //     ->relationship(
+                        //         name: 'parent',
+                        //         titleAttribute: 'name',
+                        //         modifyQueryUsing: fn (Builder $query) => $query->where('status',1)->whereBelongsTo(Filament::getTenant())
+                        //     )
+                        //     ->searchable()
+                        //     ->preload(),
+                        // Forms\Components\TextInput::make('name')
+                        //     ->label('Nama')
+                        //     ->required()
+                        //     ->maxLength(255),
+                        // Forms\Components\TextInput::make('url')
+                        //     ->required()
+                        //     ->maxLength(255),
+                        // Forms\Components\TextInput::make('order')
+                        //     ->label('Urutan')
+                        //     ->required()
+                        //     ->maxLength(255),
+                        // Forms\Components\Toggle::make('status')
+                        //     ->onColor('success')
+                        //     ->offColor('danger'),
                     ])
             ]);
     }
@@ -69,10 +81,10 @@ class MenuResource extends Resource
                     ->label('Nama')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('parent_id.name')
-                    ->label('Parent')
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('parent_id')
+                //     ->label('Parent')
+                //     ->sortable()
+                //     ->searchable(),
             ])
             ->filters([
                 //
@@ -89,14 +101,14 @@ class MenuResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -104,5 +116,5 @@ class MenuResource extends Resource
             'create' => Pages\CreateMenu::route('/create'),
             'edit' => Pages\EditMenu::route('/{record}/edit'),
         ];
-    }    
+    }
 }

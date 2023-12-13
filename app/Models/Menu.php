@@ -12,18 +12,24 @@ class Menu extends Model
 
     protected $guarded = [];
 
+    protected $table = 'menus';
+
+    protected $casts = [
+        'subject' => 'array'
+    ];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
     }
 
-    public function parent()
-    {
-        return $this->belongsTo(self::class, 'parent_id');
-    }
+    // public function parent()
+    // {
+    //     return $this->belongsTo(self::class, 'parent_id');
+    // }
 
-    public function children()
-    {
-        return self::where('parent_id', $this->id)->get();
-    }
+    // public function children()
+    // {
+    //     return self::where('parent_id', $this->id)->get();
+    // }
 }
