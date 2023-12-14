@@ -15,7 +15,7 @@ class CreateAnswer extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
-        return $this->previousUrl ?? static::getParentResource()::getUrl('answers.index', [
+        return $this->previousUrl ?? static::getParentResource()::getUrl('questions.answers.index', [
             'parent' => $this->parent,
         ]);
     }

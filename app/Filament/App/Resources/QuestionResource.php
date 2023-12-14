@@ -68,7 +68,7 @@ class QuestionResource extends Resource
                     ->color('success')
                     ->icon('heroicon-m-academic-cap')
                     ->url(
-                        fn (Question $record): string => static::getUrl('answers.index', [
+                        fn (Question $record): string => static::getUrl('questions.answers.index', [
                             'parent' => $record->id,
                         ])
                     ),
@@ -98,9 +98,9 @@ class QuestionResource extends Resource
             'edit' => Pages\EditQuestion::route('/{record}/edit'),
 
             // answers
-            'answers.index' => ListAnswers::route('/{parent}/answers'),
-            'answers.create' => CreateAnswer::route('/{parent}/answers/create'),
-            'answers.edit' => EditAnswer::route('/{parent}/answers/{record}/edit'),
+            'questions.answers.index' => ListAnswers::route('/{parent}/answers'),
+            'questions.answers.create' => CreateAnswer::route('/{parent}/answers/create'),
+            'questions.answers.edit' => EditAnswer::route('/{parent}/answers/{record}/edit'),
         ];
     }
 }

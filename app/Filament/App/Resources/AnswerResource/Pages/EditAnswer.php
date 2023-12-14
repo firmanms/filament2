@@ -22,7 +22,7 @@ class EditAnswer extends EditRecord
 
     protected function getRedirectUrl(): string
     {
-        return $this->previousUrl ?? static::getParentResource()::getUrl('answers.index', [
+        return $this->previousUrl ?? static::getParentResource()::getUrl('questions.answers.index', [
             'parent' => $this->parent,
         ]);
     }
@@ -32,7 +32,7 @@ class EditAnswer extends EditRecord
         $resource = static::getResource();
 
         $action->authorize($resource::canDelete($this->getRecord()))
-            ->successRedirectUrl(static::getParentResource()::getUrl('answers.index', [
+            ->successRedirectUrl(static::getParentResource()::getUrl('questions.answers.index', [
                 'parent' => $this->parent,
             ]));
     }
