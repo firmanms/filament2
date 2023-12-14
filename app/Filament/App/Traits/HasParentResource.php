@@ -70,7 +70,7 @@ trait HasParentResource
         $breadcrumbs = [
             $parentResource::getUrl() => $parentResource::getBreadCrumb(),
             $parentResource::getRecordTitle($this->parent),
-            $parentResource::getUrl(name: $this->getChildPageNamePrefix() . '.index', parameters: ['parent' => $this->parent]) => $resource::getBreadCrumb(),
+            $parentResource::getUrl(name: $this->getChildPageNamePrefix() . 'questions.index', parameters: ['parent' => $this->parent]) => $resource::getBreadCrumb(),
         ];
 
         if (isset($this->record)) {

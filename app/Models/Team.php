@@ -74,8 +74,13 @@ class Team extends Model
         return $this->hasMany(Agenda::class);
     }
 
-    public function settings(): HasMany
+    public function questions(): HasMany
     {
-        return $this->hasMany(Setting::class);
+        return $this->hasMany(Question::class, 'company_id');
+    }
+
+    public function answers(): HasMany
+    {
+        return $this->hasMany(Answer::class, 'company_id');
     }
 }
