@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\BannerResource\Pages;
 use App\Filament\App\Resources\BannerResource\RelationManagers;
 use App\Models\Banner;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -45,7 +46,8 @@ class BannerResource extends Resource
                         ->required()
                         ->maxLength(255),
                     Forms\Components\Fileupload::make('image')
-                        ->directory('banner')
+                        ->directory('banner/'.Filament::getTenant()->id)
+                        ->image()
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                     }),
@@ -83,14 +85,14 @@ class BannerResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -98,5 +100,5 @@ class BannerResource extends Resource
             'create' => Pages\CreateBanner::route('/create'),
             'edit' => Pages\EditBanner::route('/{record}/edit'),
         ];
-    }    
+    }
 }

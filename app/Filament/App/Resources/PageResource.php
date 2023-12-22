@@ -2,9 +2,11 @@
 
 namespace App\Filament\App\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\App\Resources\PageResource\Pages;
 use App\Filament\App\Resources\PageResource\RelationManagers;
 use App\Models\Page;
+use Filament\Facades\Filament;
 use Illuminate\Support\Str;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,13 +21,15 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationLabel = 'Page';
 
     protected static ?string $modelLabel = 'Page';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -45,10 +49,18 @@ class PageResource extends Resource
                             ->required()
                             ->readOnly()
                             ->maxLength(255),
-                        Forms\Components\RichEditor::make('description')
+                        // Forms\Components\RichEditor::make('description')
+                        //     ->label('Deskripsi')
+                        //     ->fileAttachmentsDirectory('attachpages')
+                        //     ->fileAttachmentsVisibility('private'),
+                        TinyEditor::make('description')
                             ->label('Deskripsi')
-                            ->fileAttachmentsDirectory('attachpages')
-                            ->fileAttachmentsVisibility('private'),
+                            ->fileAttachmentsDisk('public')
+                            ->fileAttachmentsVisibility('public')
+                            ->fileAttachmentsDirectory('attachpages/'.Filament::getTenant()->id)
+                            ->profile('custom')
+                            ->columnSpan('full')
+                            ->required(),
                         Forms\Components\Toggle::make('status')
                             ->onColor('success')
                             ->offColor('danger'),
@@ -75,7 +87,7 @@ class PageResource extends Resource
                 //
             ])
             ->actions([
-                
+
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
@@ -88,14 +100,14 @@ class PageResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -103,5 +115,5 @@ class PageResource extends Resource
             'create' => Pages\CreatePage::route('/create'),
             'edit' => Pages\EditPage::route('/{record}/edit'),
         ];
-    }    
+    }
 }

@@ -88,4 +88,9 @@ class Team extends Model
     {
         return $this->hasMany(Widget::class);
     }
+
+    public function galeris(): HasMany
+    {
+        return $this->hasMany(Galeri::class);
+    }
 }

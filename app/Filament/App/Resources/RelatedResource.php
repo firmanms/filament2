@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\RelatedResource\Pages;
 use App\Filament\App\Resources\RelatedResource\RelationManagers;
 use App\Models\Related;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -48,7 +49,8 @@ class RelatedResource extends Resource
                             ->maxLength(255),
                         Forms\Components\Fileupload::make('image')
                             ->label('Gambar')
-                            ->directory('related')
+                            ->image()
+                            ->directory('related/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
@@ -88,14 +90,14 @@ class RelatedResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -103,5 +105,5 @@ class RelatedResource extends Resource
             'create' => Pages\CreateRelated::route('/create'),
             'edit' => Pages\EditRelated::route('/{record}/edit'),
         ];
-    }    
+    }
 }

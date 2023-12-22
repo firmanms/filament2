@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\AgendaResource\Pages;
 use App\Filament\App\Resources\AgendaResource\RelationManagers;
 use App\Models\Agenda;
+use Filament\Facades\Filament;
 use Illuminate\Support\Str;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -20,13 +21,15 @@ class AgendaResource extends Resource
 {
     protected static ?string $model = Agenda::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationLabel = 'Agenda';
 
     protected static ?string $modelLabel = 'Agenda';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -59,7 +62,8 @@ class AgendaResource extends Resource
                     ->schema([
                         Forms\Components\Fileupload::make('image')
                             ->label('Gambar')
-                            ->directory('agendas')
+                            ->image()
+                            ->directory('agendas/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
@@ -75,7 +79,7 @@ class AgendaResource extends Resource
                         Forms\Components\TextInput::make('location')
                             ->label('Tempat')
                             ->required()
-                            ->maxLength(255),                        
+                            ->maxLength(255),
                     ])->columns(4),
             ]);
     }
@@ -120,14 +124,14 @@ class AgendaResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -135,5 +139,5 @@ class AgendaResource extends Resource
             'create' => Pages\CreateAgenda::route('/create'),
             'edit' => Pages\EditAgenda::route('/{record}/edit'),
         ];
-    }    
+    }
 }

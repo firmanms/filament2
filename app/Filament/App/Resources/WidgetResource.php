@@ -2,9 +2,11 @@
 
 namespace App\Filament\App\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\App\Resources\WidgetResource\Pages;
 use App\Filament\App\Resources\WidgetResource\RelationManagers;
 use App\Models\Widget;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -37,15 +39,32 @@ class WidgetResource extends Resource
                         ->required()
                         ->label('Judul')
                         ->maxLength(255),
-                    Forms\Components\RichEditor::make('label')
-                        ->label('Deskripsi')
-                        ->fileAttachmentsDirectory('attachwidgets')
-                        ->fileAttachmentsVisibility('private'),
+                    // Forms\Components\RichEditor::make('label')
+                    //     ->label('Deskripsi')
+                    //     ->fileAttachmentsDirectory('attachwidgets')
+                    //     ->fileAttachmentsVisibility('private'),
+                    TinyEditor::make('label')
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsVisibility('public')
+                    ->fileAttachmentsDirectory('attachwidgets/'.Filament::getTenant()->id)
+                    ->profile('custom')
+                    ->columnSpan('full')
+                    ->required(),
+                ]),
+            Forms\Components\Section::make('Pengaturan')
+                ->schema([
+                    Forms\Components\TextInput::make('sort')
+                        ->required()
+                        ->numeric()
+                        ->label('Urutan')
+                        ->maxLength(255),
                     Forms\Components\Toggle::make('status')
+                        ->inline(false)
                         ->onColor('success')
                         ->offColor('danger'),
-                ]),
+                ])->columns(2),
         ]);
+
     }
 
     public static function table(Table $table): Table
@@ -78,7 +97,8 @@ class WidgetResource extends Resource
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ]);
+            ])
+            ->defaultSort('sort', 'asc');
     }
 
     public static function getRelations(): array

@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('widgets', function (Blueprint $table) {
+        Schema::create('galeris', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->longText('label');
-            $table->integer('sort');
+            $table->string('slug');
+            $table->longText('description');
+            $table->string('image')->nullable();
+            $table->longText('image_gallery')->nullable();
+            $table->date('published');
+            $table->string('category');
             $table->boolean('status');
             $table->timestamps();
         });
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('widgets');
+        Schema::dropIfExists('galeris');
     }
 };

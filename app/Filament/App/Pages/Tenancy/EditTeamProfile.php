@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Pages\Tenancy;
 
+use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -43,7 +44,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Logo')
                             ->image()
-                            ->directory('logo')
+                            ->directory('logo/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
@@ -51,7 +52,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Favicon')
                             ->image()
-                            ->directory('favicon')
+                            ->directory('favicon/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
@@ -79,7 +80,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Foto Pimpinan')
                             ->image()
-                            ->directory('leader_foto')
+                            ->directory('leader_foto/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
@@ -91,7 +92,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Tupoksi')
                             ->toolbarButtons([
-                                
+
                                 'blockquote',
                                 'bold',
                                 'bulletList',
@@ -109,7 +110,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Selayang Pandang')
                             ->toolbarButtons([
-                                
+
                                 'blockquote',
                                 'bold',
                                 'bulletList',
@@ -127,7 +128,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->label('Sambutan Pimpinan')
                             ->toolbarButtons([
-                                
+
                                 'blockquote',
                                 'bold',
                                 'bulletList',
@@ -200,6 +201,6 @@ class EditTeamProfile extends EditTenantProfile
 
                   ]);
 
-                  
+
       }
 }

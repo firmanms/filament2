@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\SlideResource\Pages;
 use App\Filament\App\Resources\SlideResource\RelationManagers;
 use App\Models\Slide;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,7 +20,7 @@ class SlideResource extends Resource
     protected static ?string $model = Slide::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    
+
     protected static ?string $navigationLabel = 'Slide';
 
     protected static ?string $modelLabel = 'Slide';
@@ -44,7 +45,8 @@ class SlideResource extends Resource
                             ->maxLength(255),
                         Forms\Components\Fileupload::make('image')
                             ->label('Gambar')
-                            ->directory('slide')
+                            ->image()
+                            ->directory('slide/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                                 return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
@@ -85,14 +87,14 @@ class SlideResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -100,5 +102,5 @@ class SlideResource extends Resource
             'create' => Pages\CreateSlide::route('/create'),
             'edit' => Pages\EditSlide::route('/{record}/edit'),
         ];
-    }    
+    }
 }

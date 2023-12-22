@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\App\Resources\PostResource\Pages;
 use App\Filament\App\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -21,13 +22,15 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationLabel = 'Post';
 
     protected static ?string $modelLabel = 'Post';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -47,10 +50,18 @@ class PostResource extends Resource
                             ->required()
                             ->readOnly()
                             ->maxLength(255),
-                        Forms\Components\RichEditor::make('description')
+                        // Forms\Components\RichEditor::make('description')
+                        //     ->label('Deskripsi')
+                        //     ->fileAttachmentsDirectory('attachposts')
+                        //     ->fileAttachmentsVisibility('private'),
+                        TinyEditor::make('description')
                             ->label('Deskripsi')
-                            ->fileAttachmentsDirectory('attachposts')
-                            ->fileAttachmentsVisibility('private'),
+                            ->fileAttachmentsDisk('public')
+                            ->fileAttachmentsVisibility('public')
+                            ->fileAttachmentsDirectory('attachposts/'.Filament::getTenant()->id)
+                            ->profile('custom')
+                            ->columnSpan('full')
+                            ->required(),
                         Forms\Components\Toggle::make('status')
                             ->onColor('success')
                             ->offColor('danger'),
@@ -60,7 +71,8 @@ class PostResource extends Resource
                     ->schema([
                         Forms\Components\Fileupload::make('image')
                             ->label('Gambar')
-                            ->directory('posts')
+                            ->image()
+                            ->directory('posts/'.Filament::getTenant()->id)
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
@@ -127,14 +139,14 @@ class PostResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -142,5 +154,5 @@ class PostResource extends Resource
             'create' => Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
-    }    
+    }
 }
