@@ -37,6 +37,9 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('nickname')->nullable();
+            $table->string('status')->nullable();
+            $table->string('akreditasi')->nullable();
+            $table->string('karakteristik')->nullable();
             $table->timestamps();
         });
 

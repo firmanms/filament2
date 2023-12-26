@@ -6,6 +6,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\TextInput;
@@ -163,6 +164,38 @@ class EditTeamProfile extends EditTenantProfile
                             ->required()
                             ->placeholder('Kepala Puskesmas')
                             ->maxLength(255),
+                    ])->columns(3),
+
+                    Section::make('Kategori')
+                    ->description('Kategori Puskesmas')
+                    ->schema([
+                        
+                        Select::make('status')
+                            ->required()
+                            ->label('DTP/NON DTP')
+                            ->options([
+                                'DTP' => 'DTP',
+                                'NON DTP' => 'NON DTP',
+                            ]),
+                        Select::make('akreditasi')
+                            ->required()
+                            ->label('Akreditasi')
+                            ->options([
+                                'Paripurna' => 'Paripurna',
+                                'Utama' => 'Utama',
+                                'Madya' => 'Madya',
+                                'Dasar' => 'Dasar',
+                                'Tdk Akreditasi' => 'Tdk Akreditasi',
+                            ]),
+                        Select::make('karakteristik')
+                            ->required()
+                            ->label('Karakteristik')
+                            ->options([
+                                'Kawasan Perkotaan' => 'Kawasan Perkotaan',
+                                'Kawasan Perdesaan' => 'Kawasan Perdesaan',
+                                'Kawasan Terpencil' => 'Kawasan Terpencil',
+                                'Kawasan Sangat Terpencil' => 'Kawasan Sangat Terpencil',
+                            ]),
                     ])->columns(3),
 
                     Section::make('Media Sosial Kantor')

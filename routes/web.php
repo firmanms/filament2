@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Livewire\Frontend;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homes');
+Route::get('/portal', [App\Http\Controllers\HomeController::class, 'portal'])->name('homes');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homess');
+//Route search
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+
 Route::get('/{slug}', [App\Http\Controllers\HomeController::class, 'show'])->name('show');
 Route::get('/{tenant}/page/{slug}', [App\Http\Controllers\HomeController::class, 'showpage'])->name('showpage');
+Route::get('/tes', Frontend::class);
+

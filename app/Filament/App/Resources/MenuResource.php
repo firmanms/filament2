@@ -40,6 +40,7 @@ class MenuResource extends Resource
                             ->required()
                             ->maxLength(255),
                         AdjacencyList::make('subject')
+                            ->maxDepth(1)
                             ->form([
                                 Forms\Components\TextInput::make('label')
                                     ->required(),
