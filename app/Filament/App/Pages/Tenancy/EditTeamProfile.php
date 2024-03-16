@@ -169,7 +169,7 @@ class EditTeamProfile extends EditTenantProfile
                     Section::make('Kategori')
                     ->description('Kategori Puskesmas')
                     ->schema([
-                        
+
                         Select::make('status')
                             ->required()
                             ->label('DTP/NON DTP')
@@ -202,22 +202,26 @@ class EditTeamProfile extends EditTenantProfile
                     ->description('Masukkan username/channel id saja')
                     ->schema([
                         TextInput::make('fb')
-                            ->required()
                             ->label('Facebook')
+                            ->placeholder('https://facebook.com/username')
                             ->maxLength(255),
                         TextInput::make('ig')
-                            ->required()
+                            ->placeholder('https://instagram.com/username')
                             ->label('Instagram')
                             ->maxLength(255),
                         TextInput::make('tw')
-                            ->required()
+                            ->placeholder('https://twitter.com/username')
                             ->label('Twitter')
                             ->maxLength(255),
                         TextInput::make('channel_yt')
-                            ->required()
+                            ->placeholder('https://youtube.com/username')
                             ->label('Channel Youtube')
                             ->maxLength(255),
-                    ])->columns(4),
+                        TextInput::make('tiktok')
+                            ->placeholder('https://tiktok.com/username')
+                            ->label('Tiktok')
+                            ->maxLength(255),
+                    ])->columns(3),
 
                     Section::make('Informasi SEO')
                     ->description('Untuk pencarian google')

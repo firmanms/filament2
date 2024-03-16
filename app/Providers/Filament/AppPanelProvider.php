@@ -77,7 +77,6 @@ class AppPanelProvider extends PanelProvider
             ->tenantProfile(EditTeamProfile::class)
             ->navigationGroups([
                 'Publikasi',
-                'FAQ',
                 'Pengaturan',
             ]);
     }

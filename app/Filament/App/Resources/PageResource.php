@@ -23,7 +23,7 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Page';
+    protected static ?string $navigationLabel = 'Halaman';
 
     protected static ?string $modelLabel = 'Page';
 

@@ -93,4 +93,14 @@ class Team extends Model
     {
         return $this->hasMany(Galeri::class);
     }
+
+    public function faqs(): HasMany
+    {
+        return $this->hasMany(Faq::class);
+    }
+
+    public function employes(): HasMany
+    {
+        return $this->hasMany(Employe::class);
+    }
 }

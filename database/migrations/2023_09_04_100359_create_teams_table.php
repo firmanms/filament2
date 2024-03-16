@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('ig')->nullable();
             $table->string('tw')->nullable();
             $table->string('channel_yt')->nullable();
+            $table->string('tiktok')->nullable();
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('nickname')->nullable();
