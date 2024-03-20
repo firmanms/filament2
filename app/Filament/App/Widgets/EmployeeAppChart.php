@@ -2,7 +2,9 @@
 
 namespace App\Filament\App\Widgets;
 
+use App\Models\Employe;
 use App\Models\Employee;
+use App\Models\Post;
 use Filament\Facades\Filament;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
@@ -10,7 +12,7 @@ use Flowframe\Trend\TrendValue;
 
 class EmployeeAppChart extends ChartWidget
 {
-    protected static ?string $heading = 'Employees Chart';
+    protected static ?string $heading = 'Chart Posting';
 
     protected static ?int $sort = 3;
 
@@ -18,7 +20,7 @@ class EmployeeAppChart extends ChartWidget
 
     protected function getData(): array
     {
-        $data = Trend::query(Employee::query()->whereBelongsTo(Filament::getTenant()))
+        $data = Trend::query(Post::query()->whereBelongsTo(Filament::getTenant()))
             ->between(
                 start: now()->startOfMonth(),
                 end: now()->endOfMonth(),
@@ -29,7 +31,7 @@ class EmployeeAppChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Employees',
+                    'label' => 'Posting',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                 ],
             ],

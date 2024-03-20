@@ -30,6 +30,9 @@
   <link href="{{ asset('frontend/portal/assets/vendor/glightbox/css/glightbox.min.css ') }}" rel="stylesheet">
   <link href="{{ asset('frontend/portal/assets/vendor/swiper/swiper-bundle.min.css ') }}" rel="stylesheet">
 
+  <!-- GPR Kominfo -->
+  <script type="text/javascript" src="https://widget.kominfo.go.id/gpr-widget-kominfo.min.js"></script>
+
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend/portal/assets/css/main.css ') }}" rel="stylesheet">
 
@@ -72,7 +75,7 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#team">Puskesmas</a></li>
           <li><a href="#status">Status</a></li>
           <li><a href="#akreditasi">Akreditasi</a></li>
@@ -128,7 +131,7 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Menu</h4>
           <ul>
-            <li><a href="#hero">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#team">Puskesmas</a></li>
             <li><a href="#status">Status</a></li>
             <li><a href="#akreditasi">Akreditasi</a></li>

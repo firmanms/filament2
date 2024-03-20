@@ -94,6 +94,10 @@
             <div class="col-lg-4">
 
               <div class="stats-item d-flex align-items-center">
+                <p><strong>STATUS PUSKESMAS</strong></p>
+              </div><!-- End Stats Item -->
+
+              <div class="stats-item d-flex align-items-center">
                 <span data-purecounter-start="0" data-purecounter-end="{{ $c_status1 }}" data-purecounter-duration="1" class="purecounter"></span>
                 <p><strong>Dengan Tempat Perawatan (DTP)</strong></p>
               </div><!-- End Stats Item -->
@@ -122,6 +126,10 @@
             </div>
 
             <div class="col-lg-4">
+
+              <div class="stats-item d-flex align-items-center">
+                <p><strong>AKREDITASI PUSKESMAS</strong></p>
+              </div><!-- End Stats Item -->
 
               <div class="stats-item d-flex align-items-center">
                 <span data-purecounter-start="0" data-purecounter-end="{{ $c_akre1 }}" data-purecounter-duration="1" class="purecounter"></span>
@@ -218,13 +226,13 @@
                 <p class="post-category">{{ $item->categories->name }}</p>
 
                 <h2 class="title">
-                  <a href="blog-details.html">{{ $item->title }}</a>
+                  <a href="{{ url('/post/'.$item->slug.'') }}">{{ $item->title }}</a>
                 </h2>
 
                 <div class="d-flex align-items-center">
                   <img src="{{ url('storage/'.$profil->logo .'') }}" alt="" class="img-fluid post-author-img flex-shrink-0">
                   <div class="post-meta">
-                    <p class="post-author">{{ $item->team->name }}</p>
+                    <p class="post-author"><a href="{{ url( $item->team->slug )}}">{{ $item->team->name }}</a></p>
                     <p class="post-date">
                       <time datetime="{{ $item->published }}">{!! $newDate = date("d-m-Y", strtotime($item->published)) !!}</time>
                     </p>

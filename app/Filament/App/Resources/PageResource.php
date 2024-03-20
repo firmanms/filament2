@@ -77,6 +77,11 @@ class PageResource extends Resource
                     ->sortable()
                     ->limit(50)
                     ->searchable(),
+                    Tables\Columns\TextColumn::make('slug')
+                    ->label('slug')
+                    ->sortable()
+                    ->limit(50)
+                    ->searchable(),
                 Tables\Columns\ToggleColumn::make('status')
                     ->onColor('success')
                     ->offColor('danger')

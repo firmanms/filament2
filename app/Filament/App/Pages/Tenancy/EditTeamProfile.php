@@ -20,7 +20,7 @@ class EditTeamProfile extends EditTenantProfile
 {
       public static function getLabel(): string
       {
-            return 'Team profile';
+            return 'Ubah Data';
       }
 
       public function form(Form $form): Form
@@ -32,6 +32,7 @@ class EditTeamProfile extends EditTenantProfile
                         TextInput::make('name')
                             ->label('Nama')
                             ->required()
+                            ->readOnly()
                             ->maxLength(255)
                             ->live(onBlur: true)
                             ->afterStateUpdated(function (Set $set, $state) {
@@ -71,8 +72,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->maxLength(255),
                         Textarea::make('url_maps')
                             ->required()
-                            ->label('URL Google Maps')
-                            ->maxLength(255),
+                            ->label('URL Google Maps'),
                         TextInput::make('leader_name')
                             ->required()
                             ->label('Nama Pimpinan')
@@ -91,7 +91,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->maxLength(255),
                         RichEditor::make('maintask')
                             ->required()
-                            ->label('Tupoksi')
+                            ->label('footer')
                             ->toolbarButtons([
 
                                 'blockquote',

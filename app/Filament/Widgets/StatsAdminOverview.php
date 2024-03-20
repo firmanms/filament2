@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Employee;
+use App\Models\Post;
 use App\Models\Team;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
@@ -18,7 +19,7 @@ class StatsAdminOverview extends BaseWidget
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->chart([7, 2, 10, 3, 15, 4, 17])
                 ->color('success'),
-            Stat::make('Teams', Team::query()->count())
+            Stat::make('Teams', Post::query()->count())
                 ->description('All teams from the database')
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('danger'),

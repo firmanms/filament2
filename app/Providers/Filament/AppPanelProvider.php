@@ -73,7 +73,7 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->tenant(Team::class, ownershipRelationship: 'team', slugAttribute: 'id')
-            ->tenantRegistration(RegisterTeam::class)
+            // ->tenantRegistration(RegisterTeam::class)
             ->tenantProfile(EditTeamProfile::class)
             ->navigationGroups([
                 'Publikasi',
