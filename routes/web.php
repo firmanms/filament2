@@ -32,4 +32,13 @@ Route::get('/{tenant}/galeri/{slug}', [App\Http\Controllers\HomeController::clas
 Route::get('/{tenant}/page/{slug}', [App\Http\Controllers\HomeController::class, 'showpage'])->name('showpage');
 Route::get('/{tenant}/post/{slug}', [App\Http\Controllers\HomeController::class, 'showpost'])->name('showpost');
 Route::get('/tes', Frontend::class);
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
+Route::get('/optimize', function () {
+    Artisan::call('optimize');
+});
+Route::get('/clearcache', function () {
+    Artisan::call('route:clear');
+});
