@@ -7,10 +7,13 @@ use App\Models\Banner;
 use App\Models\Employe;
 use App\Models\Faq;
 use App\Models\Galeri;
+use App\Models\Layanan;
 use App\Models\Menu;
 use App\Models\Page;
+use App\Models\Pengaduan;
 use App\Models\Post;
 use App\Models\Related;
+use App\Models\Sarana;
 use App\Models\Slide;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -236,6 +239,51 @@ class HomeController extends Controller
         $menus = json_decode($jsonStrings, true);
         $galeris= Galeri::where('team_id',$id_tenant)->where('status',1)->orderBy('published','desc')->paginate(1);
         return view('frontend.subportal.galeri',compact('menus','profil','recentposts','galeris'));
+    }
+
+    public function showlistpelayanan(string $tenant)
+    {
+        $profil = Team::where('slug',$tenant)->firstOrFail();
+        $id_tenant=$profil->id;
+        $info="Informasi Pelayanan";
+        // dd($profil);
+        $menu= Menu::where('team_id',$id_tenant)->first();
+        $jsonString = $menu['subject'];
+        $jsonStrings = json_encode($jsonString);
+
+        $menus = json_decode($jsonStrings, true);
+        $layanan= Layanan::where('team_id',$id_tenant)->where('status',1)->orderBy('name','desc')->get();
+        return view('frontend.subportal.page_layanan',compact('menus','profil','info','layanan'));
+    }
+
+    public function showsarana(string $tenant)
+    {
+        $profil = Team::where('slug',$tenant)->firstOrFail();
+        $id_tenant=$profil->id;
+        $info="Informasi Sarana";
+        // dd($profil);
+        $menu= Menu::where('team_id',$id_tenant)->first();
+        $jsonString = $menu['subject'];
+        $jsonStrings = json_encode($jsonString);
+
+        $menus = json_decode($jsonStrings, true);
+        $sarana= Sarana::where('team_id',$id_tenant)->orderBy('id','desc')->first();
+        return view('frontend.subportal.page_sarana',compact('menus','profil','info','sarana'));
+    }
+
+    public function showpengaduan(string $tenant)
+    {
+        $profil = Team::where('slug',$tenant)->firstOrFail();
+        $id_tenant=$profil->id;
+        $info="Informasi Pengaduan";
+        // dd($profil);
+        $menu= Menu::where('team_id',$id_tenant)->first();
+        $jsonString = $menu['subject'];
+        $jsonStrings = json_encode($jsonString);
+
+        $menus = json_decode($jsonStrings, true);
+        $pengaduan= Pengaduan::where('team_id',$id_tenant)->orderBy('id','desc')->first();
+        return view('frontend.subportal.page_pengaduan',compact('menus','profil','info','pengaduan'));
     }
 
     public function showpage(string $tenant,$slug)

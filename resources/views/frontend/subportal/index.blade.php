@@ -59,58 +59,13 @@
 
     </section><!-- =======End About Section ======= -->
 
-    <!-- Team Section -->
-    <section id="team" class="team">
-
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h2>Pegawai</h2>
-          <p>{{ $profil->name }}</p>
-        </header>
-
-        <div class="row gy-4">
-
-          <div class="team swiper" data-aos="fade-up" data-aos-delay="200">
-            <div class="swiper-wrapper">
-              @foreach($employee as $pegawai)
-              <div class="swiper-slide">
-                {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"> --}}
-                  <div class="member">
-                    <div class="member-img">
-                      <img src="{{ url('storage/'.$pegawai->image .'') }}" class="img-fluid" alt="">
-                      <div class="social">
-                        <a href="https://tiktok.com/{{ $pegawai->tiktok }}"><i class="bi bi-tiktok"></i></a>
-                        <a href="https://facebook.com/{{ $pegawai->facebook }}"><i class="bi bi-facebook"></i></a>
-                        <a href="https://instagram.com/{{ $pegawai->instagram }}"><i class="bi bi-instagram"></i></a>
-                      </div>
-                    </div>
-                    <div class="member-info">
-                      <h4>{{$pegawai->name  }}</h4>
-                      <span>{{$pegawai->position  }}</span>
-                      <p>{{ $pegawai->description  }}</p>
-                    </div>
-                  </div>
-                {{-- </div> --}}
-              </div>
-              @endforeach
-
-            </div>
-            {{-- <div class="swiper-pagination"></div> --}}
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End Team Section -->
     <!-- ======= Layanan Section ======= -->
     <section id="pricing" class="pricing">
 
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h2>BANNER/LAYANAN</h2>
+          <h2>BANNER</h2>
           <p>{{ $profil->name }}</p>
         </header>
 
@@ -121,7 +76,12 @@
               <h3 style="color: #000000;">{{ $layanan->title }}</h3>
               {{-- <div class="price"><sup>$</sup>0<span> / mo</span></div> --}}
               <img src="{{ url('storage/'.$layanan->image .'') }}" class="img-fluid" alt="">
-              <a href="{{ url($layanan->url) }}" class="btn-buy">Selengkapnya</a>
+              @if (false===strpos($layanan->url,'http'))
+                    <a href="{{ url($profil->slug.'/'.$layanan->url) }}" class="btn-buy">Selengkapnya</a>
+              @else
+                    <a href="{{ url($layanan->url) }}" class="btn-buy">Selengkapnya</a>
+              @endif
+
             </div>
           </div>
           @endforeach
@@ -131,6 +91,52 @@
       </div>
 
     </section><!-- End Layanan Section -->
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+
+        <div class="container" data-aos="fade-up">
+
+          <header class="section-header">
+            <h2>Pegawai</h2>
+            <p>{{ $profil->name }}</p>
+          </header>
+
+          <div class="row gy-4">
+
+            <div class="team swiper" data-aos="fade-up" data-aos-delay="200">
+              <div class="swiper-wrapper">
+                @foreach($employee as $pegawai)
+                <div class="swiper-slide">
+                  {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"> --}}
+                    <div class="member">
+                      <div class="member-img">
+                        <img src="{{ url('storage/'.$pegawai->image .'') }}" class="img-fluid" alt="">
+                        <div class="social">
+                          <a href="https://tiktok.com/{{ $pegawai->tiktok }}"><i class="bi bi-tiktok"></i></a>
+                          <a href="https://facebook.com/{{ $pegawai->facebook }}"><i class="bi bi-facebook"></i></a>
+                          <a href="https://instagram.com/{{ $pegawai->instagram }}"><i class="bi bi-instagram"></i></a>
+                        </div>
+                      </div>
+                      <div class="member-info">
+                        <h4>{{$pegawai->name  }}</h4>
+                        <span>{{$pegawai->position  }}</span>
+                        <p>{{ $pegawai->description  }}</p>
+                      </div>
+                    </div>
+                  {{-- </div> --}}
+                </div>
+                @endforeach
+
+              </div>
+              {{-- <div class="swiper-pagination"></div> --}}
+            </div>
+
+          </div>
+
+        </div>
+
+      </section><!-- End Team Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
@@ -208,32 +214,6 @@
 
     </section><!-- End Youtube -->
 
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-
-        <div class="container" data-aos="fade-up">
-
-          <header class="section-header">
-            <h2>Link Terkait</h2>
-            <p>Link Terkait</p>
-          </header>
-
-          <div class="clients-slider swiper">
-            <div class="swiper-wrapper align-items-center">
-                @foreach($related as $linkterkait)
-              <div class="swiper-slide">
-                <a href="{{ $linkterkait->url }}" target="_blank"><img src="{{ url('storage/'.$linkterkait->image .'') }}" class="img-fluid" alt=""></a>
-              </div>
-              @endforeach
-
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-
-      </section><!-- End Clients Section -->
-
       <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
 
@@ -270,6 +250,31 @@
         </div>
 
       </section><!-- End F.A.Q Section -->
+
+      <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+
+        <div class="container" data-aos="fade-up">
+
+          <header class="section-header">
+            <h2>Link Terkait</h2>
+            <p>Link Terkait</p>
+          </header>
+
+          <div class="clients-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+                @foreach($related as $linkterkait)
+              <div class="swiper-slide">
+                <a href="{{ $linkterkait->url }}" target="_blank"><img src="{{ url('storage/'.$linkterkait->image .'') }}" class="img-fluid" alt=""></a>
+              </div>
+              @endforeach
+
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+      </section><!-- End Clients Section -->
 
     <section id="contact" class="contact">
 

@@ -74,16 +74,6 @@ class Team extends Model
         return $this->hasMany(Agenda::class);
     }
 
-    public function questions(): HasMany
-    {
-        return $this->hasMany(Question::class);
-    }
-
-    public function answers(): HasMany
-    {
-        return $this->hasMany(Answer::class);
-    }
-
     public function widgets(): HasMany
     {
         return $this->hasMany(Widget::class);
@@ -102,5 +92,20 @@ class Team extends Model
     public function employes(): HasMany
     {
         return $this->hasMany(Employe::class);
+    }
+
+    public function layanans(): HasMany
+    {
+        return $this->hasMany(Layanan::class);
+    }
+
+    public function pengaduans(): HasMany
+    {
+        return $this->hasMany(Pengaduan::class);
+    }
+
+    public function saranas(): HasMany
+    {
+        return $this->hasMany(Sarana::class);
     }
 }

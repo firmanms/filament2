@@ -44,7 +44,7 @@
               </div>
 
               <div class="entry-content">
-                {!! \Illuminate\Support\Str::limit($artikel->description ?? '',500,' ...') !!}
+                {{-- {!! \Illuminate\Support\Str::limit($artikel->description ?? '',500,' ...') !!} --}}
 
                 {{-- {!! str_limit(strip_tags($artikel->description), 1) !!}
             @if (strlen(strip_tags($artikel->description)) > 1)

@@ -68,11 +68,12 @@ class GaleriResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                        Forms\Components\Fileupload::make('image_gallery')
-                        ->label('Gambar Galeri')
+                    Forms\Components\Fileupload::make('image_gallery')
+                        ->label('Gambar Galeri (Maks 5 Foto)')
                         ->image()
                         ->directory('image_gallery/'.Filament::getTenant()->id)
                         ->multiple()
+                        ->maxFiles(5)
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),

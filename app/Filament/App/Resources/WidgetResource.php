@@ -77,6 +77,12 @@ class WidgetResource extends Resource
                     ->limit(50)
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('sort')
+                    ->label('Urutan')
+                    ->html()
+                    ->limit(50)
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\ToggleColumn::make('status')
                     ->onColor('success')
                     ->offColor('danger')

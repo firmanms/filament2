@@ -51,8 +51,7 @@ class AgendaResource extends Resource
                             ->maxLength(255),
                         Forms\Components\RichEditor::make('description')
                             ->label('Deskripsi')
-                            ->fileAttachmentsDirectory('attachposts')
-                            ->fileAttachmentsVisibility('private'),
+                            ->fileAttachmentsDirectory('attachagenda/'.Filament::getTenant()->id),
                         Forms\Components\Toggle::make('status')
                             ->onColor('success')
                             ->offColor('danger'),

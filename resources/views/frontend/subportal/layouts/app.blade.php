@@ -79,12 +79,20 @@
                 <a href="#"><span>{{ $node['label'] }}</span> <i class="bi bi-chevron-down"></i></a>
                 <ul class="dd-box-shadow">
                     @foreach($node['children'] as $childId => $child)
+                    @if (false===strpos($child['link'],'http'))
                     <li><a href="{{ url($profil->slug.'/'.$child['link']) }}">{{ $child['label'] }}</a></li>
+                    @else
+                    <li><a href="{{ url($child['link']) }}">{{ $child['label'] }}</a></li>
+                    @endif
                     @endforeach
                 </ul>
                 </li>
             @else
+                @if (false===strpos($node['link'],'http'))
                 <li><a href="{{url($profil->slug.'/'.$node['link']) }}">{{ $node['label'] }}</a></li>
+                @else
+                <li><a href="{{url($node['link']) }}">{{ $node['label'] }}</a></li>
+                @endif
             @endif
             @endforeach
         </ul>

@@ -31,6 +31,10 @@ Route::get('/{tenant}/page/galeri', [App\Http\Controllers\HomeController::class,
 Route::get('/{tenant}/galeri/{slug}', [App\Http\Controllers\HomeController::class, 'singlegaleri'])->name('singlegaleri');
 Route::get('/{tenant}/page/{slug}', [App\Http\Controllers\HomeController::class, 'showpage'])->name('showpage');
 Route::get('/{tenant}/post/{slug}', [App\Http\Controllers\HomeController::class, 'showpost'])->name('showpost');
+Route::get('/{tenant}/pelayanan', [App\Http\Controllers\HomeController::class, 'showlistpelayanan'])->name('showlistpelayanan');
+Route::get('/{tenant}/pelayanan/{slug}', [App\Http\Controllers\HomeController::class, 'showpelayanan'])->name('showpelayanan');
+Route::get('/{tenant}/sarana', [App\Http\Controllers\HomeController::class, 'showsarana'])->name('showsarana');
+Route::get('/{tenant}/pengaduan', [App\Http\Controllers\HomeController::class, 'showpengaduan'])->name('showpengaduan');
 Route::get('/tes', Frontend::class);
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
