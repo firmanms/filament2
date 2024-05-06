@@ -80,7 +80,7 @@ class EmployeResource extends Resource
                         ->label('Tiktok')
                         ->placeholder('username')
                         ->maxLength(255),
-                    Forms\Components\Fileupload::make('image')
+                    Forms\Components\FileUpload::make('image')
                         ->label('Foto')
                         ->image()
                         ->directory('employe/'.Filament::getTenant()->id)

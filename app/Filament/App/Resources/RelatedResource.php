@@ -47,7 +47,7 @@ class RelatedResource extends Resource
                             ->autosize()
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Fileupload::make('image')
+                        Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
                             ->image()
                             ->directory('related/'.Filament::getTenant()->id)

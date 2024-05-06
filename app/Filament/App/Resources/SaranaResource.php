@@ -36,7 +36,7 @@ class SaranaResource extends Resource
                 Forms\Components\Section::make('Maklumat, Visi Misi dan lainnya')
                 ->description('Maksimal upload 3 gambar')
                 ->schema([
-                    Forms\Components\Fileupload::make('maklumat')
+                    Forms\Components\FileUpload::make('maklumat')
                         ->label('Maklumat')
                         ->image()
                         ->directory('maklumat/'.Filament::getTenant()->id)
@@ -44,7 +44,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('visi')
+                    Forms\Components\FileUpload::make('visi')
                         ->label('Visi')
                         ->image()
                         ->directory('visi/'.Filament::getTenant()->id)
@@ -52,7 +52,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('misi')
+                    Forms\Components\FileUpload::make('misi')
                         ->label('Misi')
                         ->image()
                         ->directory('misi/'.Filament::getTenant()->id)
@@ -60,7 +60,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('motto')
+                    Forms\Components\FileUpload::make('motto')
                         ->label('Motto')
                         ->image()
                         ->directory('motto/'.Filament::getTenant()->id)
@@ -68,7 +68,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('kode_etik')
+                    Forms\Components\FileUpload::make('kode_etik')
                         ->label('Kode Etik')
                         ->image()
                         ->directory('kode_etik/'.Filament::getTenant()->id)
@@ -76,7 +76,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('tata_tertib')
+                    Forms\Components\FileUpload::make('tata_tertib')
                         ->label('Tata Tertib')
                         ->image()
                         ->directory('tata_tertib/'.Filament::getTenant()->id)
@@ -84,7 +84,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('si_pelayanan_publik')
+                    Forms\Components\FileUpload::make('si_pelayanan_publik')
                         ->label('Sistem Informasi Pelayanan Publik')
                         ->image()
                         ->directory('si_pelayanan_publik/'.Filament::getTenant()->id)
@@ -96,7 +96,7 @@ class SaranaResource extends Resource
                 Forms\Components\Section::make('Sarana')
                 ->description('Maksimal upload 3 gambar')
                 ->schema([
-                    Forms\Components\Fileupload::make('ruang_tunggu')
+                    Forms\Components\FileUpload::make('ruang_tunggu')
                         ->label('Ruang Tunggu')
                         ->image()
                         ->directory('ruang_tunggu/'.Filament::getTenant()->id)
@@ -104,7 +104,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('meja_layanan')
+                    Forms\Components\FileUpload::make('meja_layanan')
                         ->label('Meja Layanan')
                         ->image()
                         ->directory('meja_layanan/'.Filament::getTenant()->id)
@@ -112,7 +112,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('parkir')
+                    Forms\Components\FileUpload::make('parkir')
                         ->label('Parkir')
                         ->image()
                         ->directory('parkir/'.Filament::getTenant()->id)
@@ -120,7 +120,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('tempat_ibadah')
+                    Forms\Components\FileUpload::make('tempat_ibadah')
                         ->label('Tempat Ibadah')
                         ->image()
                         ->directory('tempat_ibadah/'.Filament::getTenant()->id)
@@ -128,7 +128,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('charger')
+                    Forms\Components\FileUpload::make('charger')
                         ->label('Charger')
                         ->image()
                         ->directory('charger/'.Filament::getTenant()->id)
@@ -136,7 +136,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('pojok_baca')
+                    Forms\Components\FileUpload::make('pojok_baca')
                         ->label('Pojok Baca')
                         ->image()
                         ->directory('pojok_baca/'.Filament::getTenant()->id)
@@ -144,7 +144,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('toilet')
+                    Forms\Components\FileUpload::make('toilet')
                         ->label('Toilet')
                         ->image()
                         ->directory('toilet/'.Filament::getTenant()->id)
@@ -157,7 +157,7 @@ class SaranaResource extends Resource
                 Forms\Components\Section::make('Sarana Khusus')
                 ->description('Maksimal upload 3 gambar')
                 ->schema([
-                    Forms\Components\Fileupload::make('petunjuk_layanan_khusus')
+                    Forms\Components\FileUpload::make('petunjuk_layanan_khusus')
                         ->label('Petunjuk Layanan/Papan Informasi Khusus')
                         ->image()
                         ->directory('petunjuk_layanan_khusus/'.Filament::getTenant()->id)
@@ -165,7 +165,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('petunjuk_tanda')
+                    Forms\Components\FileUpload::make('petunjuk_tanda')
                         ->label('Petunjuk Seperti Tanda Lansia dan Ibu Menyusui')
                         ->image()
                         ->directory('petunjuk_tanda/'.Filament::getTenant()->id)
@@ -173,7 +173,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('narator')
+                    Forms\Components\FileUpload::make('narator')
                         ->label('Narator/Audio')
                         ->image()
                         ->directory('narator/'.Filament::getTenant()->id)
@@ -181,7 +181,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('huruf_braile')
+                    Forms\Components\FileUpload::make('huruf_braile')
                         ->label('Papan Informasi Huruf Braile')
                         ->image()
                         ->directory('huruf_braile/'.Filament::getTenant()->id)
@@ -189,7 +189,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('kursi_roda')
+                    Forms\Components\FileUpload::make('kursi_roda')
                         ->label('Kursi Roda')
                         ->image()
                         ->directory('kursi_roda/'.Filament::getTenant()->id)
@@ -197,7 +197,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('rambatan')
+                    Forms\Components\FileUpload::make('rambatan')
                         ->label('Ram Rambatan')
                         ->image()
                         ->directory('rambatan/'.Filament::getTenant()->id)
@@ -205,7 +205,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('laktasi')
+                    Forms\Components\FileUpload::make('laktasi')
                         ->label('Laktasi')
                         ->image()
                         ->directory('laktasi/'.Filament::getTenant()->id)
@@ -213,7 +213,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('toilet_disabilitas')
+                    Forms\Components\FileUpload::make('toilet_disabilitas')
                         ->label('Toilet Disabilitas')
                         ->image()
                         ->directory('toilet_disabilitas/'.Filament::getTenant()->id)
@@ -221,7 +221,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('kursi_prioritas')
+                    Forms\Components\FileUpload::make('kursi_prioritas')
                         ->label('Kursi Prioritas')
                         ->image()
                         ->directory('kursi_prioritas/'.Filament::getTenant()->id)
@@ -229,7 +229,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('parkir_khusus')
+                    Forms\Components\FileUpload::make('parkir_khusus')
                         ->label('Parkir Khusus')
                         ->image()
                         ->directory('parkir_khusus/'.Filament::getTenant()->id)
@@ -237,7 +237,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('tempat_main')
+                    Forms\Components\FileUpload::make('tempat_main')
                         ->label('Tempat Bermain Anak')
                         ->image()
                         ->directory('tempat_main/'.Filament::getTenant()->id)
@@ -245,7 +245,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('lantai_pemandu')
+                    Forms\Components\FileUpload::make('lantai_pemandu')
                         ->label('Lantai Pemandu/ Guiding Block')
                         ->image()
                         ->directory('lantai_pemandu/'.Filament::getTenant()->id)
@@ -258,7 +258,7 @@ class SaranaResource extends Resource
                 Forms\Components\Section::make('Sarana Keamanan')
                 ->description('Maksimal upload 3 gambar')
                 ->schema([
-                    Forms\Components\Fileupload::make('apar')
+                    Forms\Components\FileUpload::make('apar')
                         ->label('Apar')
                         ->image()
                         ->directory('apar/'.Filament::getTenant()->id)
@@ -266,7 +266,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('jalur_evakuasi')
+                    Forms\Components\FileUpload::make('jalur_evakuasi')
                         ->label('Jalur Evakuasi')
                         ->image()
                         ->directory('jalur_evakuasi/'.Filament::getTenant()->id)
@@ -274,7 +274,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('cctv')
+                    Forms\Components\FileUpload::make('cctv')
                         ->label('cctv')
                         ->image()
                         ->directory('cctv/'.Filament::getTenant()->id)
@@ -282,7 +282,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('petugas_keamanan')
+                    Forms\Components\FileUpload::make('petugas_keamanan')
                         ->label('Petugas Keamanan')
                         ->image()
                         ->directory('petugas_keamanan/'.Filament::getTenant()->id)
@@ -290,7 +290,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('titik_kumpul')
+                    Forms\Components\FileUpload::make('titik_kumpul')
                         ->label('Titik Kumpul')
                         ->image()
                         ->directory('titik_kumpul/'.Filament::getTenant()->id)
@@ -298,7 +298,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('ruang_arsip')
+                    Forms\Components\FileUpload::make('ruang_arsip')
                         ->label('Ruang Arsip')
                         ->image()
                         ->directory('ruang_arsip/'.Filament::getTenant()->id)
@@ -306,7 +306,7 @@ class SaranaResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('red_button')
+                    Forms\Components\FileUpload::make('red_button')
                         ->label('Red Button/Tombol Darurat')
                         ->image()
                         ->directory('red_button/'.Filament::getTenant()->id)

@@ -61,14 +61,14 @@ class GaleriResource extends Resource
                 Forms\Components\Section::make('Gambar')
                 // ->description('Put the user name details in.')
                 ->schema([
-                    Forms\Components\Fileupload::make('image')
+                    Forms\Components\FileUpload::make('image')
                         ->label('Cover')
                         ->image()
                         ->directory('gallery/'.Filament::getTenant()->id)
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                    Forms\Components\Fileupload::make('image_gallery')
+                    Forms\Components\FileUpload::make('image_gallery')
                         ->label('Gambar Galeri (Maks 5 Foto)')
                         ->image()
                         ->directory('image_gallery/'.Filament::getTenant()->id)

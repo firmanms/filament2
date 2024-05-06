@@ -43,7 +43,7 @@ class SlideResource extends Resource
                             ->label('Sub Judul')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Fileupload::make('image')
+                        Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
                             ->image()
                             ->directory('slide/'.Filament::getTenant()->id)

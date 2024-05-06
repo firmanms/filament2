@@ -45,7 +45,7 @@ class BannerResource extends Resource
                         ->autosize()
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\Fileupload::make('image')
+                    Forms\Components\FileUpload::make('image')
                         ->directory('banner/'.Filament::getTenant()->id)
                         ->image()
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {

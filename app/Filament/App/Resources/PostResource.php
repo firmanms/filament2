@@ -69,7 +69,7 @@ class PostResource extends Resource
                     Forms\Components\Section::make('Pengaturan')
                     // ->description('Put the user name details in.')
                     ->schema([
-                        Forms\Components\Fileupload::make('image')
+                        Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
                             ->image()
                             ->directory('posts/'.Filament::getTenant()->id)

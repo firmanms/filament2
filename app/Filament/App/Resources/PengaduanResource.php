@@ -111,7 +111,7 @@ class PengaduanResource extends Resource
                         ->required()
                         ->fileAttachmentsDirectory('attachprosedur/'.Filament::getTenant()->id)
                         ->fileAttachmentsVisibility('private'),
-                Forms\Components\Fileupload::make('image')
+                Forms\Components\FileUpload::make('image')
                         ->label('Pengelolaan Pengaduan')
                         ->image()
                         ->directory('pengaduans/'.Filament::getTenant()->id)

@@ -50,7 +50,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                             }),
-                        Fileupload::make('favicon')
+                        FileUpload::make('favicon')
                             ->required()
                             ->label('Favicon')
                             ->image()
