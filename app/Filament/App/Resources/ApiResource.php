@@ -23,6 +23,8 @@ class ApiResource extends Resource
 
     protected static ?string $modelLabel = 'API/URL';
 
+    protected static ?string $pluralLabel = 'API/URL';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 1;
@@ -41,7 +43,7 @@ class ApiResource extends Resource
                             ->required()
                             ->maxLength(255),
                     ])
-                
+
             ]);
     }
 
@@ -73,14 +75,19 @@ class ApiResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
+    public static function getBreadcrumb(): string
+    {
+        return 'API';
+    }
+
     public static function getPages(): array
     {
         return [
@@ -88,5 +95,5 @@ class ApiResource extends Resource
             'create' => Pages\CreateApi::route('/create'),
             'edit' => Pages\EditApi::route('/{record}/edit'),
         ];
-    }    
+    }
 }

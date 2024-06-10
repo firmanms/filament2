@@ -27,6 +27,8 @@ class EmployeResource extends Resource
 
     protected static ?string $modelLabel = 'Pegawai';
 
+    protected static ?string $pluralLabel = 'Pegawai';
+
     protected static ?string $navigationGroup = 'Publikasi';
 
     protected static ?int $navigationSort = 7;
@@ -131,6 +133,11 @@ class EmployeResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Pegawai';
     }
 
     public static function getPages(): array

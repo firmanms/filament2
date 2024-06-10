@@ -26,6 +26,8 @@ class LayananResource extends Resource
 
     protected static ?string $modelLabel = 'Layanan';
 
+    protected static ?string $pluralLabel = 'Layanan';
+
     protected static ?string $navigationGroup = 'Tematik';
 
     protected static ?int $navigationSort = 1;
@@ -118,6 +120,11 @@ class LayananResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Layanan';
     }
 
     public static function getPages(): array

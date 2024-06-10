@@ -24,9 +24,11 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Post';
+    protected static ?string $navigationLabel = 'Posting';
 
-    protected static ?string $modelLabel = 'Post';
+    protected static ?string $modelLabel = 'Posting';
+
+    protected static ?string $pluralLabel = 'Posting';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
@@ -145,6 +147,11 @@ class PostResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Posting';
     }
 
     public static function getPages(): array

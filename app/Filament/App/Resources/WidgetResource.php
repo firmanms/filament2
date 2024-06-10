@@ -25,6 +25,8 @@ class WidgetResource extends Resource
 
     protected static ?string $modelLabel = 'Widget';
 
+    protected static ?string $pluralLabel = 'Widget';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 7;
@@ -112,6 +114,11 @@ class WidgetResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Widget';
     }
 
     public static function getPages(): array

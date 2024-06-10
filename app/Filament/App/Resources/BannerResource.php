@@ -25,6 +25,8 @@ class BannerResource extends Resource
 
     protected static ?string $modelLabel = 'Banner';
 
+    protected static ?string $pluralLabel = 'Banner';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 2;
@@ -91,6 +93,11 @@ class BannerResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Banner';
     }
 
     public static function getPages(): array

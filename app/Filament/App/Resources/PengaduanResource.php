@@ -25,6 +25,8 @@ class PengaduanResource extends Resource
 
     protected static ?string $modelLabel = 'Pengaduan';
 
+    protected static ?string $pluralLabel = 'Pengaduan';
+
     protected static ?string $navigationGroup = 'Tematik';
 
     protected static ?int $navigationSort = 3;
@@ -144,7 +146,7 @@ class PengaduanResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -154,6 +156,21 @@ class PengaduanResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Pengaduan';
     }
 
     public static function getPages(): array

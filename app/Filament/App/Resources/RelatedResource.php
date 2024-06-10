@@ -25,6 +25,8 @@ class RelatedResource extends Resource
 
     protected static ?string $modelLabel = 'Link Terkait';
 
+    protected static ?string $pluralLabel = 'Link Terkait';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 6;
@@ -96,6 +98,11 @@ class RelatedResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Link Terkait';
     }
 
     public static function getPages(): array

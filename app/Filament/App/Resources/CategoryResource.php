@@ -23,6 +23,8 @@ class CategoryResource extends Resource
 
     protected static ?string $modelLabel = 'Kategori';
 
+    protected static ?string $pluralLabel = 'Kategori';
+
     protected static ?string $navigationGroup = 'Publikasi';
 
     protected static ?int $navigationSort = 4;
@@ -80,6 +82,11 @@ class CategoryResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Kategori';
     }
 
     public static function getPages(): array

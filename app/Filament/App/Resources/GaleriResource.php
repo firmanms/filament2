@@ -27,6 +27,8 @@ class GaleriResource extends Resource
 
     protected static ?string $modelLabel = 'Galeri';
 
+    protected static ?string $pluralLabel = 'Galeri';
+
     protected static ?string $navigationGroup = 'Publikasi';
 
     protected static ?int $navigationSort = 5;
@@ -154,6 +156,11 @@ class GaleriResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Galeri';
     }
 
     public static function getPages(): array

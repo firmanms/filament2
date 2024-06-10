@@ -25,7 +25,9 @@ class PageResource extends Resource
 
     protected static ?string $navigationLabel = 'Halaman';
 
-    protected static ?string $modelLabel = 'Page';
+    protected static ?string $modelLabel = 'Halaman';
+
+    protected static ?string $pluralLabel = 'Halaman';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
@@ -111,6 +113,11 @@ class PageResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Halaman Statis';
     }
 
     public static function getPages(): array

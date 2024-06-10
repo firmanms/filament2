@@ -25,6 +25,8 @@ class MenuResource extends Resource
 
     protected static ?string $modelLabel = 'Menu';
 
+    protected static ?string $pluralLabel = 'Menu';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 5;
@@ -38,6 +40,7 @@ class MenuResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->label('Nama Menu')
                             ->required()
+                            ->readOnly()
                             ->maxLength(255),
                         AdjacencyList::make('subject')
                             ->maxDepth(1)
@@ -95,7 +98,7 @@ class MenuResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
@@ -108,6 +111,21 @@ class MenuResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Menu';
     }
 
     public static function getPages(): array

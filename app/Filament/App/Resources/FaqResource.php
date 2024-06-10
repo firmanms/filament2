@@ -19,9 +19,11 @@ class FaqResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Faq';
+    protected static ?string $navigationLabel = 'FAQ';
 
-    protected static ?string $modelLabel = 'Faq';
+    protected static ?string $modelLabel = 'FAQ';
+
+    protected static ?string $pluralLabel = 'FAQ';
 
     protected static ?string $navigationGroup = 'Publikasi';
 
@@ -114,6 +116,11 @@ class FaqResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'FAQ';
     }
 
     public static function getPages(): array

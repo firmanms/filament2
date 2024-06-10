@@ -25,6 +25,8 @@ class SaranaResource extends Resource
 
     protected static ?string $modelLabel = 'Sarana';
 
+    protected static ?string $pluralLabel = 'Sarana'; // Judul plural
+
     protected static ?string $navigationGroup = 'Tematik';
 
     protected static ?int $navigationSort = 2;
@@ -337,7 +339,7 @@ class SaranaResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -347,6 +349,21 @@ class SaranaResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Sarana';
     }
 
     public static function getPages(): array

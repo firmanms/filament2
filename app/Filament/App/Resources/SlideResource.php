@@ -25,6 +25,8 @@ class SlideResource extends Resource
 
     protected static ?string $modelLabel = 'Slide';
 
+    protected static ?string $pluralLabel = 'Slide';
+
     protected static ?string $navigationGroup = 'Pengaturan';
 
     protected static ?int $navigationSort = 3;
@@ -93,6 +95,11 @@ class SlideResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Slide';
     }
 
     public static function getPages(): array

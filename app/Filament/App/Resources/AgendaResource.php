@@ -27,6 +27,8 @@ class AgendaResource extends Resource
 
     protected static ?string $modelLabel = 'Agenda';
 
+    protected static ?string $pluralLabel = 'Agenda';
+
     protected static ?string $navigationGroup = 'Publikasi';
 
     protected static ?int $navigationSort = 2;
@@ -129,6 +131,11 @@ class AgendaResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Agenda';
     }
 
     public static function getPages(): array
