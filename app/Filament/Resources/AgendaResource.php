@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SlideResource\Pages;
-use App\Filament\Resources\SlideResource\RelationManagers;
-use App\Models\Slide;
+use App\Filament\Resources\AgendaResource\Pages;
+use App\Filament\Resources\AgendaResource\RelationManagers;
+use App\Models\Agenda;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,21 +13,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SlideResource extends Resource
+class AgendaResource extends Resource
 {
-    protected static ?string $model = Slide::class;
+    protected static ?string $model = Agenda::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Slide';
+    protected static ?string $navigationLabel = 'Agenda';
 
-    protected static ?string $modelLabel = 'Slide';
+    protected static ?string $modelLabel = 'Agenda';
 
-    protected static ?string $pluralLabel = 'Slide';
+    protected static ?string $pluralLabel = 'Agenda';
 
-    protected static ?string $navigationGroup = 'Pengaturan';
+    protected static ?string $navigationGroup = 'Publikasi';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -42,10 +42,18 @@ class SlideResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('published')
+                    ->label('Tanggal')
+                    ->dateTime('d-m-Y')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
                     ->sortable()
+                    ->limit(50)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('team.name')
                     ->label('Puskesmas')
@@ -60,14 +68,11 @@ class SlideResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    // Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -92,15 +97,15 @@ class SlideResource extends Resource
 
     public static function getBreadcrumb(): string
     {
-        return 'Slide';
+        return 'Agenda';
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSlides::route('/'),
-            'create' => Pages\CreateSlide::route('/create'),
-            'edit' => Pages\EditSlide::route('/{record}/edit'),
+            'index' => Pages\ListAgendas::route('/'),
+            'create' => Pages\CreateAgenda::route('/create'),
+            'edit' => Pages\EditAgenda::route('/{record}/edit'),
         ];
-    }    
+    }
 }

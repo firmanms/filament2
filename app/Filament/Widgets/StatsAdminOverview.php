@@ -23,10 +23,10 @@ class StatsAdminOverview extends BaseWidget
                 ->description('All teams from the database')
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('danger'),
-            Stat::make('Employees', Employee::query()->count())
-                ->description('All employees from the database')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->color('success'),
+            // Stat::make('Employees', Employee::query()->count())
+            //     ->description('All employees from the database')
+            //     ->descriptionIcon('heroicon-m-arrow-trending-up')
+            //     ->color('success'),
         ];
     }
 }

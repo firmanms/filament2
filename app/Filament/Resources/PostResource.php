@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SlideResource\Pages;
-use App\Filament\Resources\SlideResource\RelationManagers;
-use App\Models\Slide;
+use App\Filament\Resources\PostResource\Pages;
+use App\Filament\Resources\PostResource\RelationManagers;
+use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,19 +13,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SlideResource extends Resource
+class PostResource extends Resource
 {
-    protected static ?string $model = Slide::class;
+    protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Slide';
+    protected static ?string $navigationLabel = 'Posting';
 
-    protected static ?string $modelLabel = 'Slide';
+    protected static ?string $modelLabel = 'Posting';
 
-    protected static ?string $pluralLabel = 'Slide';
+    protected static ?string $pluralLabel = 'Posting';
 
-    protected static ?string $navigationGroup = 'Pengaturan';
+    protected static ?string $navigationGroup = 'Publikasi';
 
     protected static ?int $navigationSort = 3;
 
@@ -42,9 +42,21 @@ class SlideResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
+                    ->sortable()
+                    ->limit(50)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('categories.name')
+                    ->label('Kategori')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('published')
+                    ->label('Publikasi')
+                    ->dateTime('d-m-Y')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('team.name')
@@ -62,12 +74,9 @@ class SlideResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     // Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -92,15 +101,15 @@ class SlideResource extends Resource
 
     public static function getBreadcrumb(): string
     {
-        return 'Slide';
+        return 'Posting';
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSlides::route('/'),
-            'create' => Pages\CreateSlide::route('/create'),
-            'edit' => Pages\EditSlide::route('/{record}/edit'),
+            'index' => Pages\ListPosts::route('/'),
+            'create' => Pages\CreatePost::route('/create'),
+            'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
-    }    
+    }
 }
