@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Saade\FilamentAdjacencyList\Forms\Components\AdjacencyList;
+use App\Models\Page;
 
 class MenuResource extends Resource
 {
@@ -47,8 +48,37 @@ class MenuResource extends Resource
                             ->form([
                                 Forms\Components\TextInput::make('label')
                                     ->required(),
-                                Forms\Components\TextInput::make('link')
+                                    Forms\Components\Select::make('option')
+                                    ->label('Link')
+                                    ->options([
+                                        'internal' => 'Internal',
+                                        'external' => 'External',
+                                    ])
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state, callable $set) {
+                                        $set('selectedOption', $state);
+                                        if ($state === 'internal') {
+                                            // Ambil data dari database untuk select kedua
+                                            $teamId = Filament::getTenant()->id;
+                                            $data = Page::where('team_id',$teamId)->pluck('title', 'slug')->toArray();
+                                            $set('dynamicOptions', $data);
+                                        }
+                                    })
                                     ->required(),
+                                    Forms\Components\Group::make([
+                                        Forms\Components\Select::make('link')
+                                            ->label('Pilih Halaman')
+                                            ->options(fn ($get) => $get('dynamicOptions') ?? [])
+                                            ->visible(fn ($get) => $get('selectedOption') === 'internal'),
+
+
+                                            Forms\Components\TextInput::make('link')
+                                            ->label('Input Teks')
+                                            ->visible(fn ($get) => $get('selectedOption') === 'external')
+                                            ->required(),
+                                    ]),
+                                // Forms\Components\TextInput::make('link')
+                                //     ->required(),
                             ])
                         // Forms\Components\Select::make('parent_id')
                         //     ->label('Parent')

@@ -71,6 +71,10 @@
       </a>
 
       <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="{{ url('/') }}">Portal</a></li>
+          <li><a href="{{ url($profil->slug . '/') }}">Beranda</a></li>
+        </ul>
         @if(is_array($menus) && count($menus) > 0)
         <ul>
             @foreach($menus as $nodeId => $node)
@@ -80,7 +84,7 @@
                 <ul class="dd-box-shadow">
                     @foreach($node['children'] as $childId => $child)
                     @if (false===strpos($child['link'],'http'))
-                    <li><a href="{{ url($profil->slug.'/'.$child['link']) }}">{{ $child['label'] }}</a></li>
+                    <li><a href="{{ url("$profil->slug/page/{$child['link']}") }}">{{ $child['label'] }}</a></li>
                     @else
                     <li><a href="{{ url($child['link']) }}">{{ $child['label'] }}</a></li>
                     @endif
@@ -88,8 +92,9 @@
                 </ul>
                 </li>
             @else
+
                 @if (false===strpos($node['link'],'http'))
-                <li><a href="{{url($profil->slug.'/'.$node['link']) }}">{{ $node['label'] }}</a></li>
+                <li><a href="{{ url("$profil->slug/page/{$node['link']}") }}">{{ $node['label'] }}</a></li>
                 @else
                 <li><a href="{{url($node['link']) }}">{{ $node['label'] }}</a></li>
                 @endif

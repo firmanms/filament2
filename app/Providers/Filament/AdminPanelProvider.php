@@ -44,8 +44,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Inter')
             ->navigationGroups([
-                'Employee Management',
-                'System Management',
+                'Publikasi',
+                'Pengaturan',
+                'Tematik',
                 'User Management'
             ])
             ->favicon(asset('images/favicon.ico'))
